@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.exproject.basket.BasketMapper">
+    <insert id="insProduct" useGeneratedKeys="true" keyProperty="productPk">
+        INSERT INTO t_purchase_product
+        SET user_pk = #{userPk}
+        , category_pk = #{categoryPk}
+        , product_nm = #{productNm}
+        <if test=" memo != '' and memo != null ">
+            , memo = #{memo}
+        </if>
+        , product_count = #{productCount}
+    </insert>
+
+    <select id="selPurListAll">
+        SELECT
+            product_pk AS productPk
+            , category_pk AS categoryPk
+            , product_nm AS purchaseNm
+            , memo
+            , product_count AS productCount
+            , created_at AS createdAt
+            , updated_at AS updatedAt
+            , buying_check AS buyingCheck
+            , buying_date AS buyingDate
+        FROM t_purchase_product
+        WHERE user_pk = #{userPk}
+    </select>
+    
+    <update id="upPurListAll">
+        UPDATE t_purchase_product
+        SET product_pk = #{productPk}
+        , category_pk = #{categoryPk}
+        , product_nm = #{productNm}
+        , memo = #{memo}
+        , product_count = #{productCount}
+    </update>
+    
+    <delete id="deleteProduct">
+        DELETE FROM t_purchase_product
+        WHERE product_pk = #{productPk}
+        AND user_pk = #{userPk}
+    </delete>
+
+
+</mapper>
