@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.exproject.product.ProductMapper">
+    <!-- 장바구니 목록 추가 -->
+    <insert id="insProduct" useGeneratedKeys="true" keyProperty="productPk">
+        INSERT INTO t_purchase_product
+        SET user_pk = #{userPk}
+        , category_pk = #{categoryPk}
+        , product_nm = #{productNm}
+        <if test=" memo != '' and memo != null ">
+            , memo = #{memo}
+        </if>
+        <!-- , product_count = #{productCount} -->
+    </insert>
+
+    <!-- 장바구니 목록 보기 -->
+    <select id="selProduct">
+        SELECT
+              A.product_pk AS productPk
+            , B.category_nm AS categoryNm
+            , A.product_nm AS purchaseNm
+            , A.memo
+            , A.product_count AS productCount
+            , A.created_at AS createdAt
+            , A.updated_at AS updatedAt
+            , A.buying_check AS buyingCheck
+            , A.buying_date AS buyingDate
+        FROM t_purchase_product A
+        JOIN t_category B
+        ON A.category_pk = B.category_pk
+        WHERE A.user_pk = #{userPk}
+        <choose>
+            <when test="isList == 0">
+                AND A.buying_check <![CDATA[<]]> 2
+            </when>
+            <when test="isList == 1">
+                AND A.buying_check = 0 <!-- 구매 할 목록 -->
+            </when>
+            <when test="isList == 2">
+                AND A.buying_check = 1 <!-- 구매 확정 목록-->
+            </when>
+        </choose>
+    </select>
+
+    <!-- 장바구니 목록 수정-->
+    <update id="upPurListAll">
+        UPDATE t_purchase_product
+        SET
+        <if test="categoryPk != '' and categoryPk != null">
+            category_pk = #{categoryPk}
+        </if>
+        <if test="productNm != '' and productNm != null">
+            , product_nm = #{productNm}
+        </if>
+        <if test=" memo != '' and memo != null">
+            , memo = #{memo}
+        </if>
+        <!-- , product_count = #{productCount} -->
+        WHERE product_pk = #{productPk}
+    </update>
+
+    <!-- 구매 확정 처리-->
+    <update id="upProductCheck">
+        UPDATE t_purchase_product
+        SET buying_check = #{buyingCheck}
+        , buying_date = NOW()
+        WHERE product_pk = #{productPk}
+    </update>
+
+    <!-- 구매 확정 처리 된 상품 숨김 -->
+    <update id="upProductCptHide">
+        UPDATE t_purchase_product
+        SET buying_check = #{buyingCheck}
+        WHERE product_pk = #{productPk}
+        AND buying_check = 1
+    </update>
+
+    <!-- 장바구니 목록 삭제 -->
+    <delete id="deleteProduct">
+        DELETE FROM t_purchase_product
+        WHERE product_pk = #{productPk}
+    </delete>
+
+</mapper>

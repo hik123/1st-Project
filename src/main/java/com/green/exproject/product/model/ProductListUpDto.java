@@ -1,13 +1,13 @@
-package com.green.exproject.basket.model;
+package com.green.exproject.product.model;
 
 
 import lombok.Data;
 
 @Data
-public class PurListUpDto {
+public class ProductListUpDto {
     private int productPk;
     private int categoryPk;
     private String productNm;
     private String memo;
-    private int productCount;
+    //private int productCount;
 }
