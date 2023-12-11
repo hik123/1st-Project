@@ -19,7 +19,7 @@ import java.util.List;
 public class ProductController {
     private final ProductService service;
 
-    @Operation(summary = "상품 입력", description = "장바구니 목록에 카드 추가")
+    @Operation(summary = "상품 입력", description = "장바구니 목록에 카드 추가 <br>현재 categoryPk 값 <br>1: 식료품 <br>2: 생활용품 <br>3: 기타")
     @PostMapping
     public ResVo postProduct(@RequestBody ProductListInsDto dto){
         log.info("dto : {}", dto);
@@ -39,13 +39,13 @@ public class ProductController {
         return service.putPurListAll(dto);
     }
 
-    @Operation(summary = "상품 구매 확정", description = "buyingCheck 값이<br>0: DEFAULT 구매 예정<br> 1: 구매 완료")
+    @Operation(summary = "상품 구매확정", description = "buyingCheck 값이 <br> 1: 구매확정")
     @PatchMapping
     public ResVo patchProductCheck(@RequestBody ProductCompleteUpDto dto) {
         return service.patchProductCheck(dto);
     }
 
-    @Operation(summary = "구매완료 상품 삭제", description = "buyingCheck 값이<br>2: 구매완료 상품 숨김 처리")
+    @Operation(summary = "구매확정 상품 삭제", description = "buyingCheck 값이<br>2: 구매확정 상품 숨김처리")
     @PatchMapping("/hide")
     public ResVo patchProductCptHide(@RequestBody ProductCptHideUpDto dto) {
         return service.patchProductCptHide(dto);

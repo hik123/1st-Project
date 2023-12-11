@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
+@Schema(name = "상품 입력 DTO")
 public class ProductListInsDto {
     @JsonIgnore
     private int productPk;

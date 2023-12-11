@@ -62,15 +62,15 @@
     <!-- 구매 확정 처리-->
     <update id="upProductCheck">
         UPDATE t_purchase_product
-        SET buying_check = #{buyingCheck}
+        SET buying_check = 1
         , buying_date = NOW()
-        WHERE product_pk = #{productPk}
+        WHERE product_pk = 0
     </update>
 
     <!-- 구매 확정 처리 된 상품 숨김 -->
     <update id="upProductCptHide">
         UPDATE t_purchase_product
-        SET buying_check = #{buyingCheck}
+        SET buying_check = 2
         WHERE product_pk = #{productPk}
         AND buying_check = 1
     </update>
@@ -78,7 +78,11 @@
     <!-- 장바구니 목록 삭제 -->
     <delete id="deleteProduct">
         DELETE FROM t_purchase_product
-        WHERE product_pk = #{productPk}
+        <where>
+            <foreach collection="productPk" item="productPk" separator="OR">
+                (product_pk = #{productPk} AND buying_check = 0)
+            </foreach>
+        </where>
     </delete>
 
 </mapper>

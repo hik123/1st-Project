@@ -25,7 +25,7 @@ public class AdminController {
         return service.postCategory(dto);
     }
 
-    @Operation(summary = "유저 추가", description = "")
+    @Operation(summary = "유저 추가", description = "userPk: 1  <br>현재 user추가 불필요")
     @PostMapping("/user")
     public ResVo postUser(@RequestBody AdminUserInsDto dto) {
         return service.postUser(dto);

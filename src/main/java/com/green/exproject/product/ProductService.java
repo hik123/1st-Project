@@ -49,7 +49,7 @@ public class ProductService {
 
     public ResVo deleteProduct(ProductListDelDto dto) {
         int result = mapper.deleteProduct(dto);
-        if(result == 1) {
+        if(result > 0) {
             return new ResVo(1);
         }
         return new ResVo(0);

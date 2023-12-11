@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+@Schema(name = "구매예정 상품 리스트 DTO")
 @Data
 public class ProductListSelDto {
     @Schema(defaultValue = "1", description = "디폴트 유저PK 값: 1(수정X)")
