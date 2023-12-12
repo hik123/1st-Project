@@ -43,7 +43,7 @@
     </select>
 
     <!-- 장바구니 목록 수정-->
-    <update id="upPurListAll">
+    <update id="upProduct">
         UPDATE t_purchase_product
         SET
         <if test="categoryPk != '' and categoryPk != null">
@@ -52,11 +52,18 @@
         <if test="productNm != '' and productNm != null">
             , product_nm = #{productNm}
         </if>
-        <if test=" memo != '' and memo != null">
-            , memo = #{memo}
-        </if>
+        <choose>
+            <when test="memo != '' and memo != null">
+                , memo = #{memo}
+            </when>
+            <otherwise>
+                , memo = null
+            </otherwise>
+        </choose>
+
         <!-- , product_count = #{productCount} -->
         WHERE product_pk = #{productPk}
+        AND buying_check = 0
     </update>
 
     <!-- 구매 확정 처리-->
@@ -71,7 +78,10 @@
     <update id="upProductCptHide">
         UPDATE t_purchase_product
         SET buying_check = 2
-        WHERE product_pk = #{productPk}
+        WHERE product_pk IN
+        <foreach collection="productPk" item="productPk" open="(" close=")" separator=",">
+            #{productPk}
+        </foreach>
         AND buying_check = 1
     </update>
 

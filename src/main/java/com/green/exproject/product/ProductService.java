@@ -15,15 +15,18 @@ public class ProductService {
 
     public ResVo postProduct(ProductListInsDto dto) {
         int result = mapper.insProduct(dto);
-        return new ResVo(result);
+        if(result == 1) {
+            return new ResVo(1);
+        }
+        return new ResVo(0);
     }
 
     public List<ProductListSelVo> getProduct(ProductListSelDto dto) {
         return mapper.selProduct(dto);
     }
 
-    public ResVo putPurListAll(ProductListUpDto dto) {
-        int result = mapper.upPurListAll(dto);
+    public ResVo putProduct(ProductListUpDto dto) {
+        int result = mapper.upProduct(dto);
         if(result == 1) {
             return new ResVo(1);
         }

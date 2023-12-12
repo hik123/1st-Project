@@ -35,17 +35,17 @@ public class ProductController {
 
     @Operation(summary = "구매예정 상품 수정", description = "구매 할 상품 수정 처리")
     @PutMapping
-    public ResVo putPurListAll(@RequestBody ProductListUpDto dto) {
-        return service.putPurListAll(dto);
+    public ResVo putProduct(@RequestBody ProductListUpDto dto) {
+        return service.putProduct(dto);
     }
 
-    @Operation(summary = "상품 구매확정", description = "buyingCheck 값이 <br> 1: 구매확정")
+    @Operation(summary = "상품 구매확정", description = "구매확정")
     @PatchMapping
     public ResVo patchProductCheck(@RequestBody ProductCompleteUpDto dto) {
         return service.patchProductCheck(dto);
     }
 
-    @Operation(summary = "구매확정 상품 삭제", description = "buyingCheck 값이<br>2: 구매확정 상품 숨김처리")
+    @Operation(summary = "구매확정 상품 삭제", description = "구매확정 상품 숨김처리")
     @PatchMapping("/hide")
     public ResVo patchProductCptHide(@RequestBody ProductCptHideUpDto dto) {
         return service.patchProductCptHide(dto);

@@ -6,6 +6,33 @@
         SET category_nm = #{categoryNm}
     </insert>
 
+    <select id="selCategory">
+        <choose>
+            <when test=" isCategory == 1">
+                SELECT category_pk AS categoryPk
+                , category_nm AS categoryNm
+                FROM t_category
+            </when>
+        </choose>
+    </select>
+
+    <update id="upCategory">
+        UPDATE t_category
+        SET category_nm = #{categoryNm}
+        WHERE category_pk = #{categoryPk}
+    </update>
+
+    <update id="upProdtCategory">
+        UPDATE t_category A
+        LEFT JOIN t_purchase_product B
+        ON A.category_pk = B.category_pk
+        SET B.category_pk = =#{categoryPk}
+        WHERE B.product_pk IN
+        <foreach collection="productPk" item="productPk" open="(" close=")" separator=",">
+            #{productPk}
+        </foreach>
+    </update>
+
     <insert id="insUser" useGeneratedKeys="true" keyProperty="userPk">
         INSERT INTO t_user
         SET uid = #{uid}
