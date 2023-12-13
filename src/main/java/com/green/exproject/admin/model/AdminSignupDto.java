@@ -6,8 +6,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
-@Schema(name = "(관리자)유저추가 DTO")
-public class AdminUserInsDto {
+@Schema(name = "회원가입 DTO")
+public class AdminSignupDto {
     @JsonIgnore
     private int userPk;
 

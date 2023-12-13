@@ -10,7 +10,6 @@
         <if test=" memo != '' and memo != null ">
             , memo = #{memo}
         </if>
-        <!-- , product_count = #{productCount} -->
     </insert>
 
     <!-- 장바구니 목록 보기 -->
@@ -43,7 +42,7 @@
     </select>
 
     <!-- 장바구니 목록 수정-->
-    <update id="upProduct">
+    <update id="updProduct">
         UPDATE t_purchase_product
         SET
         <if test="categoryPk != '' and categoryPk != null">
@@ -60,22 +59,21 @@
                 , memo = null
             </otherwise>
         </choose>
-
-        <!-- , product_count = #{productCount} -->
         WHERE product_pk = #{productPk}
         AND buying_check = 0
     </update>
 
     <!-- 구매 확정 처리-->
-    <update id="upProductCheck">
+    <update id="updProductCheck">
         UPDATE t_purchase_product
         SET buying_check = 1
         , buying_date = NOW()
-        WHERE product_pk = 0
+        WHERE product_pk = #{productPk}
+        AND buying_check = 0
     </update>
 
     <!-- 구매 확정 처리 된 상품 숨김 -->
-    <update id="upProductCptHide">
+    <update id="updProductCptHide">
         UPDATE t_purchase_product
         SET buying_check = 2
         WHERE product_pk IN
@@ -94,5 +92,4 @@
             </foreach>
         </where>
     </delete>
-
 </mapper>

@@ -28,20 +28,22 @@ public class AdminController {
     public List<AdminCategorySelVo> getCategory(AdminCategorySelDto dto) {
         return service.getCategory(dto);
     }
-    @Operation(summary = "카테고리 수정", description = "상품 카테고리 종류 수정")
+    @Operation(summary = "카테고리 수정", description = "카테고리 종류 수정")
     @PatchMapping
     public ResVo patchCategory(@RequestBody AdminCategoryUpDto dto) {
         return service.patchCategory(dto);
     }
 
+    @Operation(summary = "상품의 카테고리 수정", description = "상품의 카테고리PK 수정")
     @PutMapping
     public ResVo putProdtCategory(@RequestBody AdminProdtCategoryUpDto dto) {
         return service.putProdtCategory(dto);
     }
 
-    @Operation(summary = "유저 추가", description = "userPk: 1  <br>현재 USER 추가 불필요")
-    @PostMapping("/user")
-    public ResVo postUser(@RequestBody AdminUserInsDto dto) {
+    @Operation(summary = "회원가입", description = "")
+    @PostMapping("/signup")
+    public ResVo postUser(@RequestBody AdminSignupDto dto) {
         return service.postUser(dto);
     }
+
 }

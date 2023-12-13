@@ -12,11 +12,11 @@ public interface ProductMapper {
 
     List<ProductListSelVo> selProduct(ProductListSelDto dto);
 
-    int upProduct(ProductListUpDto dto);
+    int updProduct(ProductListUpDto dto);
 
-    int upProductCheck(ProductCompleteUpDto dto);
+    int updProductCheck(ProductCompleteUpDto dto);
 
-    int upProductCptHide(ProductCptHideUpDto dto);
+    int updProductCptHide(ProductListDelDto dto);
 
     int deleteProduct(ProductListDelDto dto);
 }

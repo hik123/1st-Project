@@ -26,11 +26,8 @@
         UPDATE t_category A
         LEFT JOIN t_purchase_product B
         ON A.category_pk = B.category_pk
-        SET B.category_pk = =#{categoryPk}
-        WHERE B.product_pk IN
-        <foreach collection="productPk" item="productPk" open="(" close=")" separator=",">
-            #{productPk}
-        </foreach>
+        SET B.category_pk = #{categoryPk}
+        WHERE B.product_pk = #{productPk}
     </update>
 
     <insert id="insUser" useGeneratedKeys="true" keyProperty="userPk">
@@ -39,4 +36,11 @@
         , upw = #{upw}
         , nm = #{nm}
     </insert>
+
+    <select id="selUserSignin">
+        SELECT uid, upw, nm
+        FROM t_user
+        WHERE uid = #{uid}
+    </select>
+
 </mapper>
