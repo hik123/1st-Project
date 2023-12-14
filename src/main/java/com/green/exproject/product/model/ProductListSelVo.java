@@ -12,7 +12,6 @@ public class ProductListSelVo {
     private int userPk;
     private String productNm;
     private String memo;
-    private int productCount;
     private String createdAt;
     private String updatedAt;
     private int buyingCheck;

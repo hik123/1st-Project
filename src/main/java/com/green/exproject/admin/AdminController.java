@@ -6,10 +6,12 @@ import com.green.exproject.common.ResVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/admin")
@@ -40,10 +42,17 @@ public class AdminController {
         return service.putProdtCategory(dto);
     }
 
-    @Operation(summary = "회원가입", description = "")
+    @Operation(summary = "회원가입")
     @PostMapping("/signup")
     public ResVo postUser(@RequestBody AdminSignupDto dto) {
         return service.postUser(dto);
     }
 
+
+    @Operation(summary = "로그인")
+    @PostMapping("/signin")
+    public AdminSigninVo getUserSignin(@RequestBody AdminSigninDto dto) {
+        log.info("dto : {}", dto);
+        return service.getUserSignin(dto);
+    }
 }

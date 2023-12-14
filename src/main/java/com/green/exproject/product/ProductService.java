@@ -14,6 +14,7 @@ import java.util.List;
 public class ProductService {
     private final ProductMapper mapper;
 
+    // 장바구니 목록 추가
     public ResVo postProduct(ProductListInsDto dto) {
         int result = mapper.insProduct(dto);
         if(result == 1) {
@@ -22,10 +23,14 @@ public class ProductService {
         return new ResVo(Const.FAIL);
     }
 
+
+    // 장바구니 목록 보기
     public List<ProductListSelVo> getProduct(ProductListSelDto dto) {
         return mapper.selProduct(dto);
     }
 
+
+    // 장바구니 목록 수정
     public ResVo putProduct(ProductListUpDto dto) {
         int result = mapper.updProduct(dto);
         if(result == 1) {
@@ -34,6 +39,8 @@ public class ProductService {
         return new ResVo(Const.FAIL);
     }
 
+
+    // 구매확정 처리
     public ResVo patchProductCheck(ProductCompleteUpDto dto) {
         int result = mapper.updProductCheck(dto);
         if(result == 1) {
@@ -42,6 +49,8 @@ public class ProductService {
         return new ResVo(Const.FAIL);
     }
 
+
+    // 장바구니 물품 삭제 및 구매확정 물품 삭제(숨김) 처리
     public ResVo deleteProduct(ProductListDelDto dto) {
         int result = mapper.deleteProduct(dto);
         int result2 = mapper.updProductCptHide(dto);
@@ -50,5 +59,4 @@ public class ProductService {
         }
         return new ResVo(Const.SUCCESS);
     }
-
 }

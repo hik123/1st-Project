@@ -11,5 +11,4 @@ public class ProductListUpDto {
     private int categoryPk;
     private String productNm;
     private String memo;
-    //private int productCount;
 }

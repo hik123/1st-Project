@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.green.exproject.admin.AdminMapper">
+    <!-- 카테고리 추가 -->
     <insert id="insCategory" useGeneratedKeys="true" keyProperty="categoryPk">
         INSERT INTO t_category
         SET category_nm = #{categoryNm}
     </insert>
 
+    <!-- 카테고리 리스트 보기 -->
     <select id="selCategory">
         <choose>
             <when test=" isCategory == 1">
@@ -16,12 +18,14 @@
         </choose>
     </select>
 
+    <!-- 카테고리 이름 수정 -->
     <update id="upCategory">
         UPDATE t_category
         SET category_nm = #{categoryNm}
         WHERE category_pk = #{categoryPk}
     </update>
 
+    <!-- 상품의 카테고리PK 수정 -->
     <update id="upProdtCategory">
         UPDATE t_category A
         LEFT JOIN t_purchase_product B
@@ -30,6 +34,7 @@
         WHERE B.product_pk = #{productPk}
     </update>
 
+    <!-- 회원가입(유저 추가)-->
     <insert id="insUser" useGeneratedKeys="true" keyProperty="userPk">
         INSERT INTO t_user
         SET uid = #{uid}
@@ -37,10 +42,18 @@
         , nm = #{nm}
     </insert>
 
+    <!-- 로그인 인증 -->
     <select id="selUserSignin">
-        SELECT uid, upw, nm
+        SELECT user_pk AS userPk, uid, upw, nm, created_at AS createdAt
         FROM t_user
-        WHERE uid = #{uid}
+        <where>
+            <if test=" uid != null and uid != '' ">
+                uid = #{uid}
+            </if>
+            <if test=" userPk > 0">
+                user_pk = #{userPk}
+            </if>
+        </where>
     </select>
 
 </mapper>

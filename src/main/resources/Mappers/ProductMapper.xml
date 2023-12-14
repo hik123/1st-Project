@@ -19,7 +19,6 @@
             , B.category_nm AS categoryNm
             , A.product_nm AS purchaseNm
             , A.memo
-            , A.product_count AS productCount
             , A.created_at AS createdAt
             , A.updated_at AS updatedAt
             , A.buying_check AS buyingCheck
@@ -39,6 +38,9 @@
                 AND A.buying_check = 1 <!-- 구매 확정 목록-->
             </when>
         </choose>
+        <if test=" buyDate != '' and buyDate != '0000-00-00' " >
+            AND DATE(created_at) = #{buyDate}
+        </if>
     </select>
 
     <!-- 장바구니 목록 수정-->
