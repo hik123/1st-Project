@@ -39,7 +39,6 @@ public class ProductService {
         return new ResVo(Const.FAIL);
     }
 
-
     // 구매확정 처리
     public ResVo patchProductCheck(ProductCompleteUpDto dto) {
         int result = mapper.updProductCheck(dto);
@@ -48,7 +47,6 @@ public class ProductService {
         }
         return new ResVo(Const.FAIL);
     }
-
 
     // 장바구니 물품 삭제 및 구매확정 물품 삭제(숨김) 처리
     public ResVo deleteProduct(ProductListDelDto dto) {
