@@ -12,5 +12,8 @@ public class ProductListSelDto {
     @Schema(defaultValue = "0", description = "isList 값이 0:모든목록, 1:구매 할 목록, 2:구매 완료목록")
     private int isList;
     @Schema(defaultValue = "0000-00-00")
-    private String buyDate;
+    private String createdAt;
+    @Schema(defaultValue = "0000-00-00")
+    private String buyingDate;
+
 }

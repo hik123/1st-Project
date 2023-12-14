@@ -68,15 +68,14 @@ public class AdminService {
         sDto.setUid(dto.getUid());
 
         AdminUserEntity entity = mapper.selUserSignin(sDto);
-        log.info("upw : {}", dto.getUpw());
-        log.info("upw : {}", entity.getUpw());
+
         if(entity == null) {
             return AdminSigninVo.builder().result(Const.LOGIN_NO_UID).build(); // result:2 없는 아이디
         } else if(!(dto.getUpw().equals(entity.getUpw()))) {
             return AdminSigninVo.builder().result(Const.LOGIN_DIFF_UPW).build(); // result:3 비밀번호 틀림
         }
         return AdminSigninVo.builder()
-                .result(Const.SUCCESS)
+                .result(Const.SUCCESS) // result:1 로그인 성공
                 .userPk(entity.getUserPk())
                 .nm(entity.getNm())
                 .build();

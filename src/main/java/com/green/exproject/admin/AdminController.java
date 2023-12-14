@@ -19,7 +19,7 @@ import java.util.List;
 public class AdminController {
     private final AdminService service;
 
-    @Operation(summary = "카테고리 추가", description = "상품 카테고리 종류 추가")
+    @Operation(summary = "카테고리 추가", description = "카테고리 종류 추가")
     @PostMapping
     public ResVo postCategory(@RequestBody AdminCategoryInsDto dto) {
         return service.postCategory(dto);
@@ -36,7 +36,7 @@ public class AdminController {
         return service.patchCategory(dto);
     }
 
-    @Operation(summary = "상품의 카테고리 수정", description = "상품의 카테고리PK 수정")
+    @Operation(summary = "상품 카테고리 수정", description = "상품의 카테고리PK 수정")
     @PutMapping
     public ResVo putProdtCategory(@RequestBody AdminProdtCategoryUpDto dto) {
         return service.putProdtCategory(dto);
@@ -48,8 +48,7 @@ public class AdminController {
         return service.postUser(dto);
     }
 
-
-    @Operation(summary = "로그인")
+    @Operation(summary = "로그인", description = "result값 <br>1: 로그인 성공 <br>2: 비밀번호 틀림 <br>3: 없는 아이디")
     @PostMapping("/signin")
     public AdminSigninVo getUserSignin(@RequestBody AdminSigninDto dto) {
         log.info("dto : {}", dto);

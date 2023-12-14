@@ -38,8 +38,11 @@
                 AND A.buying_check = 1 <!-- 구매 확정 목록-->
             </when>
         </choose>
-        <if test=" buyDate != '' and buyDate != '0000-00-00' " >
-            AND DATE(created_at) = #{buyDate}
+        <if test=" createdAt != '' and createdAt != '0000-00-00' " >
+            AND DATE(created_at) = #{createdAt}
+        </if>
+        <if test=" buyingDate != '' and buyingDate != '0000-00-00' " >
+            AND DATE(buying_date) = #{buyingDate}
         </if>
     </select>
 
