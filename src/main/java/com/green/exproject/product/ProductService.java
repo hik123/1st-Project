@@ -54,9 +54,9 @@ public class ProductService {
     public ResVo deleteProduct(ProductListDelDto dto) {
         int result = mapper.deleteProduct(dto);
         int result2 = mapper.updProductCptHide(dto);
-        if(result == 0 || result2 == 0) {
+        if(result == 0 && result2 == 0) {
             return new ResVo(Const.FAIL);
         }
-        return new ResVo(Const.SUCCESS);
+        return new ResVo(result+result2);
     }
 }
