@@ -7,6 +7,6 @@ import java.util.List;
 
 @Data
 @Schema(name = "구매확정 상품 삭제 DTO")
-public class ProductCptHideUpDto {
+public class ProductCptHideUpdDto {
     private List<Integer> productPk;
 }

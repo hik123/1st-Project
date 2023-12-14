@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/admin")
-@Tag(name = "관리자", description = "관리자 영역")
+@Tag(name = "관리자")
 public class AdminController {
     private final AdminService service;
 
@@ -30,15 +30,16 @@ public class AdminController {
     public List<AdminCategorySelVo> getCategory(AdminCategorySelDto dto) {
         return service.getCategory(dto);
     }
+
     @Operation(summary = "카테고리 수정", description = "카테고리 종류 수정")
     @PatchMapping
-    public ResVo patchCategory(@RequestBody AdminCategoryUpDto dto) {
+    public ResVo patchCategory(@RequestBody AdminCategoryUpdDto dto) {
         return service.patchCategory(dto);
     }
 
     @Operation(summary = "상품 카테고리 수정", description = "상품의 카테고리PK 수정")
     @PutMapping
-    public ResVo putProdtCategory(@RequestBody AdminProdtCategoryUpDto dto) {
+    public ResVo putProdtCategory(@RequestBody AdminProdtCategoryUpdDto dto) {
         return service.putProdtCategory(dto);
     }
 

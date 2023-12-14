@@ -5,7 +5,6 @@ import com.green.exproject.admin.model.*;
 import com.green.exproject.common.Const;
 import com.green.exproject.common.ResVo;
 import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +33,7 @@ public class AdminService {
 
 
     // 카테고리 이름 수정
-    public ResVo patchCategory(AdminCategoryUpDto dto) {
+    public ResVo patchCategory(AdminCategoryUpdDto dto) {
         int result = mapper.upCategory(dto);
         if(result == 1) {
             return new ResVo(Const.SUCCESS);
@@ -44,7 +43,7 @@ public class AdminService {
 
 
     // 상품의 카테고리PK 값 수정
-    public ResVo putProdtCategory(AdminProdtCategoryUpDto dto) {
+    public ResVo putProdtCategory(AdminProdtCategoryUpdDto dto) {
         int result = mapper.upProdtCategory(dto);
         if(result > 0) {
             return new ResVo(result);
@@ -64,10 +63,7 @@ public class AdminService {
 
     // 로그인 인증
     public AdminSigninVo getUserSignin (AdminSigninDto dto) {
-        AdminUserSelDto sDto = new AdminUserSelDto();
-        sDto.setUid(dto.getUid());
-
-        AdminUserEntity entity = mapper.selUserSignin(sDto);
+        AdminUserEntity entity = mapper.selUserSignin(dto.getUid());
 
         if(entity == null) {
             return AdminSigninVo.builder().result(Const.LOGIN_NO_UID).build(); // result:2 없는 아이디

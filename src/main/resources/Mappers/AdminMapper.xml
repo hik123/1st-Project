@@ -46,14 +46,7 @@
     <select id="selUserSignin">
         SELECT user_pk AS userPk, uid, upw, nm, created_at AS createdAt
         FROM t_user
-        <where>
-            <if test=" uid != null and uid != '' ">
-                uid = #{uid}
-            </if>
-            <if test=" userPk > 0">
-                user_pk = #{userPk}
-            </if>
-        </where>
+        WHERE uid = #{uid}
     </select>
 
 </mapper>

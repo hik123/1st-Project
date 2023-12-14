@@ -9,10 +9,10 @@ import java.util.List;
 public interface AdminMapper {
     List<AdminCategorySelVo> selCategory(int isCategory);
     int insCategory(AdminCategoryInsDto dto);
-    int upCategory(AdminCategoryUpDto dto);
+    int upCategory(AdminCategoryUpdDto dto);
 
-    int upProdtCategory(AdminProdtCategoryUpDto dto);
+    int upProdtCategory(AdminProdtCategoryUpdDto dto);
     int insUser(AdminSignupDto dto);
 
-    AdminUserEntity selUserSignin(AdminUserSelDto dto);
+    AdminUserEntity selUserSignin(String uid);
 }

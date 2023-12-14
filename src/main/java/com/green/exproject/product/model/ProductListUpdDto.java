@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Schema(name = "상품 수정 DTO")
-public class ProductListUpDto {
+public class ProductListUpdDto {
     private int productPk;
     private int categoryPk;
     private String productNm;

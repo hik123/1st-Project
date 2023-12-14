@@ -31,7 +31,7 @@ public class ProductService {
 
 
     // 장바구니 목록 수정
-    public ResVo putProduct(ProductListUpDto dto) {
+    public ResVo putProduct(ProductListUpdDto dto) {
         int result = mapper.updProduct(dto);
         if(result == 1) {
             return new ResVo(Const.SUCCESS);
@@ -40,7 +40,7 @@ public class ProductService {
     }
 
     // 구매확정 처리
-    public ResVo patchProductCheck(ProductCompleteUpDto dto) {
+    public ResVo patchProductCheck(ProductCompleteUpdDto dto) {
         int result = mapper.updProductCheck(dto);
         if(result == 1) {
             return new ResVo(Const.SUCCESS);

@@ -37,14 +37,14 @@ public class ProductController {
 
     @Operation(summary = "구매예정 상품 수정", description = "구매예정 상품 수정 처리")
     @PutMapping
-    public ResVo putProduct(@RequestBody ProductListUpDto dto) {
+    public ResVo putProduct(@RequestBody ProductListUpdDto dto) {
         log.info("dto : {}", dto);
         return service.putProduct(dto);
     }
 
     @Operation(summary = "상품 구매확정", description = "구매확정")
     @PatchMapping
-    public ResVo patchProductCheck(@RequestBody ProductCompleteUpDto dto) {
+    public ResVo patchProductCheck(@RequestBody ProductCompleteUpdDto dto) {
         log.info("dto : {}", dto);
         return service.patchProductCheck(dto);
     }

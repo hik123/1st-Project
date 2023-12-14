@@ -16,6 +16,4 @@ public class ProductListInsDto {
     private int categoryPk;
     private String productNm;
     private String memo;
-
-    // private int productCount;
 }
