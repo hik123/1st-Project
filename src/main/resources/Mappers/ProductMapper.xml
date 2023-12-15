@@ -28,13 +28,13 @@
         ON A.category_pk = B.category_pk
         WHERE A.user_pk = #{userPk}
         <choose>
-            <when test="isList == 0">
+            <when test="choiceList == 0">
                 AND A.buying_check <![CDATA[<]]> 2
             </when>
-            <when test="isList == 1">
+            <when test="choiceList == 1">
                 AND A.buying_check = 0 <!-- 구매 할 목록 -->
             </when>
-            <when test="isList == 2">
+            <when test="choiceList == 2">
                 AND A.buying_check = 1 <!-- 구매 확정 목록-->
             </when>
         </choose>

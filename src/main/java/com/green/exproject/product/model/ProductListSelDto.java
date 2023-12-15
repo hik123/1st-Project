@@ -10,7 +10,7 @@ public class ProductListSelDto {
     @Schema(defaultValue = "1", description = "디폴트 유저PK 값: 1(수정X)")
     private int userPk;
     @Schema(defaultValue = "0", description = "isList 값이 0:모든목록, 1:구매 할 목록, 2:구매 완료목록")
-    private int isList;
+    private int choiceList;
     @Schema(defaultValue = "0000-00-00")
     private String createdAt;
     @Schema(defaultValue = "0000-00-00")

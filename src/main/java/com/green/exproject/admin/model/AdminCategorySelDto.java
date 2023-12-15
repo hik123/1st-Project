@@ -7,6 +7,6 @@ import lombok.Data;
 @Data
 @Schema(name = "(관리자)카테고리 목록 보기 DTO")
 public class AdminCategorySelDto {
-    @Schema(defaultValue = "1")
+    @Schema(defaultValue = "0")
     private int isCategory;
 }

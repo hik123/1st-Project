@@ -13,6 +13,5 @@ public interface AdminMapper {
 
     int upProdtCategory(AdminProdtCategoryUpdDto dto);
     int insUser(AdminSignupDto dto);
-
     AdminUserEntity selUserSignin(String uid);
 }

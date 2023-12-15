@@ -44,16 +44,20 @@ public class ProductController {
 
     @Operation(summary = "상품 구매확정", description = "구매확정")
     @PatchMapping
-    public ResVo patchProductCheck(@RequestBody ProductCompleteUpdDto dto) {
-        log.info("dto : {}", dto);
-        return service.patchProductCheck(dto);
+    public ResVo patchProductCheck(@RequestParam(name = "productpk") int productPk) {
+        ProductCompleteUpdDto uDto = new ProductCompleteUpdDto();
+        uDto.setProductPk(productPk);
+        log.info("dto : {}", uDto);
+        return service.patchProductCheck(uDto);
     }
 
 
     @Operation(summary = "상품 삭제", description = "구매예정 상품, 구매확정 상품 카드 삭제 처리 <br>복수 삭제 가능")
     @DeleteMapping
-    public ResVo deleteProduct(@RequestBody ProductListDelDto dto) {
-        log.info("dto : {}", dto);
-        return service.deleteProduct(dto);
+    public ResVo deleteProduct(@RequestParam(name = "listproductpk") List<Integer> productPk) {
+        ProductListDelDto dDto = new ProductListDelDto();
+        dDto.setProductPk(productPk);
+        log.info("dto : {}", dDto);
+        return service.deleteProduct(dDto);
     }
 }

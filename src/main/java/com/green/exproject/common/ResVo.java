@@ -1,6 +1,7 @@
 package com.green.exproject.common;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

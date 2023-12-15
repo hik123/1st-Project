@@ -25,7 +25,7 @@ public class AdminController {
         return service.postCategory(dto);
     }
 
-    @Operation(summary = "카테고리 리스트", description = "isCategory 값:1 <br>전체 카테고리 리스트 보기 ")
+    @Operation(summary = "카테고리 리스트", description = "isCategory 값:0 <br>전체 카테고리 리스트 보기 ")
     @GetMapping
     public List<AdminCategorySelVo> getCategory(AdminCategorySelDto dto) {
         return service.getCategory(dto);

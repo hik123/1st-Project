@@ -10,7 +10,7 @@
     <!-- 카테고리 리스트 보기 -->
     <select id="selCategory">
         <choose>
-            <when test=" isCategory == 1">
+            <when test=" isCategory == 0">
                 SELECT category_pk AS categoryPk
                 , category_nm AS categoryNm
                 FROM t_category
