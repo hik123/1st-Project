@@ -6,5 +6,7 @@ import lombok.Data;
 @Data
 @Schema(name = "구매확정 DTO")
 public class ProductCompleteUpdDto {
+    @Schema(defaultValue = "1")
+    private int userPk;
     private int productPk;
 }

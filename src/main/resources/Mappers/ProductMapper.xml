@@ -65,6 +65,7 @@
             </otherwise>
         </choose>
         WHERE product_pk = #{productPk}
+        AND user_pk = #{userPk}
         AND buying_check = 0
     </update>
 
@@ -74,6 +75,7 @@
         SET buying_check = 1
         , buying_date = NOW()
         WHERE product_pk = #{productPk}
+        AND user_pk = #{userPk}
         AND buying_check = 0
     </update>
 
@@ -81,20 +83,16 @@
     <update id="updProductCptHide">
         UPDATE t_purchase_product
         SET buying_check = 2
-        WHERE product_pk IN
-        <foreach collection="productPk" item="productPk" open="(" close=")" separator=",">
-            #{productPk}
-        </foreach>
+        WHERE product_pk = #{productPk}
+        AND user_pk = #{userPk}
         AND buying_check = 1
     </update>
 
     <!-- 장바구니 목록 삭제 -->
     <delete id="deleteProduct">
         DELETE FROM t_purchase_product
-        <where>
-            <foreach collection="productPk" item="productPk" separator="OR">
-                (product_pk = #{productPk} AND buying_check = 0)
-            </foreach>
-        </where>
+        WHERE product_pk = #{productPk}
+        AND user_pk = #{userPk}
+        AND buying_check = 0
     </delete>
 </mapper>

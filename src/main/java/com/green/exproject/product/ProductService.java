@@ -16,9 +16,13 @@ public class ProductService {
 
     // 장바구니 목록 추가
     public ResVo postProduct(ProductListInsDto dto) {
-        int result = mapper.insProduct(dto);
-        if(result == 1) {
-            return new ResVo(Const.SUCCESS);
+        try {
+            int result = mapper.insProduct(dto);
+            if (result == 1) {
+                return new ResVo(Const.SUCCESS);
+            }
+        } catch(Exception e) {
+
         }
         return new ResVo(Const.FAIL);
     }
