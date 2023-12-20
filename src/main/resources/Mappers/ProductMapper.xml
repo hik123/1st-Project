@@ -38,7 +38,7 @@
                 AND A.buying_check = 1 <!-- 구매 확정 목록-->
             </when>
         </choose>
-        <!--
+        <!-- 날짜 별로 보기
         <if test=" createdAt != '' and createdAt != '0000-00-00' " >
             AND DATE(created_at) = #{createdAt}
         </if>

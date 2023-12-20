@@ -29,20 +29,4 @@
         SET B.category_pk = #{categoryPk}
         WHERE B.product_pk = #{productPk}
     </update>
-
-    <!-- 회원가입(유저 추가)-->
-    <insert id="insUser" useGeneratedKeys="true" keyProperty="userPk">
-        INSERT INTO t_user
-        SET uid = #{uid}
-        , upw = #{upw}
-        , nm = #{nm}
-    </insert>
-
-    <!-- 로그인 인증 -->
-    <select id="selUserSignin">
-        SELECT user_pk AS userPk, uid, upw, nm, created_at AS createdAt
-        FROM t_user
-        WHERE uid = #{uid}
-    </select>
-
 </mapper>

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -46,6 +48,7 @@ public class ProductController {
     @PatchMapping
     public ResVo patchProductCheck(@RequestBody ProductCompleteUpdDto dto) {
         log.info("dto : {}", dto);
+
         return service.patchProductCheck(dto);
     }
 

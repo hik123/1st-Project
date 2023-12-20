@@ -50,31 +50,4 @@ public class AdminService {
         }
         return new ResVo(Const.FAIL);
     }
-
-
-    // 회원가입 처리
-    public ResVo postUser(AdminSignupDto dto) {
-        int result = mapper.insUser(dto);
-        if(result == 0) {
-            return new ResVo(Const.FAIL);
-        }
-        return new ResVo(dto.getUserPk());
-    }
-
-    // 로그인 인증
-    public AdminSigninVo getUserSignin (AdminSigninDto dto) {
-        AdminSigninProcVo pVo = mapper.selUserSignin(dto.getUid());
-
-        if(pVo == null) {
-            return AdminSigninVo.builder().result(Const.LOGIN_NO_UID).build(); // result:2 없는 아이디
-        } else if(!(dto.getUpw().equals(pVo.getUpw()))) {
-            return AdminSigninVo.builder().result(Const.LOGIN_DIFF_UPW).build(); // result:3 비밀번호 틀림
-        }
-        return AdminSigninVo.builder()
-                .result(Const.SUCCESS) // result:1 로그인 성공
-                .userPk(pVo.getUserPk())
-                .nm(pVo.getNm())
-                .build();
-    }
-
 }

@@ -42,17 +42,4 @@ public class AdminController {
     public ResVo putProdtCategory(@RequestBody AdminProdtCategoryUpdDto dto) {
         return service.putProdtCategory(dto);
     }
-
-    @Operation(summary = "회원가입")
-    @PostMapping("/signup")
-    public ResVo postUser(@RequestBody AdminSignupDto dto) {
-        return service.postUser(dto);
-    }
-
-    @Operation(summary = "로그인", description = "result값 <br>1: 로그인 성공 <br>2: 비밀번호 틀림 <br>3: 없는 아이디")
-    @PostMapping("/signin")
-    public AdminSigninVo getUserSignin(@RequestBody AdminSigninDto dto) {
-        log.info("dto : {}", dto);
-        return service.getUserSignin(dto);
-    }
 }

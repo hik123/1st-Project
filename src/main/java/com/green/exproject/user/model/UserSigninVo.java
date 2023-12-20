@@ -1,4 +1,4 @@
-package com.green.exproject.admin.model;
+package com.green.exproject.user.model;
 
 import lombok.Builder;
 import lombok.Data;
@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class AdminSigninVo {
+public class UserSigninVo {
     private int result;
     private int userPk;
     private String nm;

@@ -14,6 +14,8 @@ public class ProductListInsDto {
     private int userPk;
 
     private int categoryPk;
+    @Schema(defaultValue = "상품 이름")
     private String productNm;
+    @Schema(defaultValue = "메모")
     private String memo;
 }

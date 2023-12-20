@@ -1,10 +1,10 @@
-package com.green.exproject.admin.model;
+package com.green.exproject.user.model;
 
 
 import lombok.Data;
 
 @Data
-public class AdminSigninProcVo {
+public class UserSigninProcVo {
     private int userPk;
     private String upw;
     private String nm;

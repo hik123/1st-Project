@@ -11,6 +11,4 @@ public interface AdminMapper {
     int insCategory(AdminCategoryInsDto dto);
     int updCategory(AdminCategoryUpdDto dto);
     int updProdtCategory(AdminProdtCategoryUpdDto dto);
-    int insUser(AdminSignupDto dto);
-    AdminSigninProcVo selUserSignin(String uid);
 }
