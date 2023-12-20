@@ -25,10 +25,10 @@ public class AdminController {
         return service.postCategory(dto);
     }
 
-    @Operation(summary = "카테고리 리스트", description = "isCategory 값:0 <br>전체 카테고리 리스트 보기 ")
+    @Operation(summary = "카테고리 리스트", description = "전체 카테고리 리스트 보기 ")
     @GetMapping
-    public List<AdminCategorySelVo> getCategory(AdminCategorySelDto dto) {
-        return service.getCategory(dto);
+    public List<AdminCategorySelVo> getCategory() {
+        return service.getCategory();
     }
 
     @Operation(summary = "카테고리 수정", description = "카테고리 종류 수정")

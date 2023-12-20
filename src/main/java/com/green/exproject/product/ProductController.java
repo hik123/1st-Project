@@ -26,8 +26,8 @@ public class ProductController {
         return service.postProduct(dto);
     }
 
-    @Operation(summary = "구매예정 상품 리스트", description = "isList 값이<br>0: 모든목록<br>1: 구매예정 목록<br>2: 구매확정 목록 " +
-            "<br><br>createdAt: 입력 날짜에 생성된 목록만 보여줌 <br>buyingDate: 입력 날짜에 구매한 목록만 보여줌 <br>default값: 0000-00-00 날짜 상관없이 목록만 보여줌 ")
+    @Operation(summary = "구매예정 상품 리스트", description = "choiceList 값이" +
+            "<br>0: 모든목록<br>1: 구매예정 목록<br>2: 구매확정 목록 ")
     @GetMapping
     public List<ProductListSelVo> getProduct(ProductListSelDto dto){
         log.info("dto : {}", dto);

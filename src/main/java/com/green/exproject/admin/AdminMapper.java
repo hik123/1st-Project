@@ -7,11 +7,10 @@ import java.util.List;
 
 @Mapper
 public interface AdminMapper {
-    List<AdminCategorySelVo> selCategory(int isCategory);
+    List<AdminCategorySelVo> selCategory();
     int insCategory(AdminCategoryInsDto dto);
-    int upCategory(AdminCategoryUpdDto dto);
-
-    int upProdtCategory(AdminProdtCategoryUpdDto dto);
+    int updCategory(AdminCategoryUpdDto dto);
+    int updProdtCategory(AdminProdtCategoryUpdDto dto);
     int insUser(AdminSignupDto dto);
-    AdminUserEntity selUserSignin(String uid);
+    AdminSigninProcVo selUserSignin(String uid);
 }
