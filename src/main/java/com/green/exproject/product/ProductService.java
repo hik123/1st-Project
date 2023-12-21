@@ -57,4 +57,9 @@ public class ProductService {
         }
         return new ResVo(result+result2);
     }
+    // ---------------------------
+    public ProductPkExceptionVo getPkProduct(int productPk) {
+        return mapper.selPkProduct(productPk);
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.green.exproject.user;
+package com.green.exproject.exception;
 
 
 import org.springframework.http.HttpStatus;

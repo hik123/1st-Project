@@ -30,9 +30,4 @@ public class UserController {
         log.info("dto : {}", dto);
         return service.getUserSignin(dto);
     }
-
-    @GetMapping("/user/{id}")
-    public User retrieveUsers(@PathVariable int id) {
-        return null;
-    }
 }

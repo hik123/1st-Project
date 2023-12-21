@@ -19,4 +19,8 @@ public interface ProductMapper {
     int updProductCptHide(ProductListDelDto dto);
 
     int deleteProduct(ProductListDelDto dto);
+
+    // ---------------------------------------
+    ProductPkExceptionVo selPkProduct(int productPk);
+
 }

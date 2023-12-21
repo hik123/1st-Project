@@ -97,4 +97,13 @@
         AND user_pk = #{userPk}
         AND buying_check = 0
     </delete>
+
+    <!-- -->
+    <!-- 예외처리를 위한 상품productPk값의 정보-->
+    <select id="selPkProduct">
+        SELECT product_nm AS productNm
+        FROM t_purchase_product
+        WHERE product_pk = #{productPk}
+        AND (buying_check = 0 OR buying_check = 1)
+    </select>
 </mapper>

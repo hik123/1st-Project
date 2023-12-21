@@ -1,8 +1,15 @@
 package com.green.exproject.product;
 
 
+import com.green.exproject.admin.AdminService;
+import com.green.exproject.admin.model.AdminCategorySelVo;
+import com.green.exproject.exception.CategoryPkNotFoundException;
+import com.green.exproject.exception.ProductPkNotFoundException;
+import com.green.exproject.exception.UserNotFoundException;
+import com.green.exproject.exception.WrongChoiceListValueException;
 import com.green.exproject.product.model.*;
 import com.green.exproject.common.ResVo;
+import com.green.exproject.user.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -20,11 +27,20 @@ import java.util.List;
 @Tag(name = "장바구니 컨트롤러", description = "장바구니 CRUD")
 public class ProductController {
     private final ProductService service;
+    private final AdminService adminService;
+    private final UserService userService;
 
     @Operation(summary = "상품 입력", description = "장바구니 목록에 카드 추가 <br>categoryPk 값 아래 카테고리 리스트 참고")
     @PostMapping
     public ResVo postProduct(@RequestBody ProductListInsDto dto){
         log.info("dto : {}", dto);
+        if(dto.getUserPk() != 1) {
+            throw new UserNotFoundException("잘못된 유저PK 입니다.");
+        }
+        List<AdminCategorySelVo> category = adminService.getCategory();
+        if(dto.getCategoryPk() < 1 || dto.getCategoryPk() > category.size()) {
+            throw new CategoryPkNotFoundException("잘못된 상품종류 입니다.");
+        }
         return service.postProduct(dto);
     }
 
@@ -33,14 +49,31 @@ public class ProductController {
     @GetMapping
     public List<ProductListSelVo> getProduct(ProductListSelDto dto){
         log.info("dto : {}", dto);
+        if(dto.getUserPk() != 1) {
+            throw new UserNotFoundException("잘못된 유저PK 입니다.");
+        }
+        if(dto.getChoiceList() < 0 || dto.getChoiceList() > 2) {
+            throw new WrongChoiceListValueException("잘못된 입력! ChoiceList 값을 다시 입력해주세요.");
+        }
         return service.getProduct(dto);
     }
-
 
     @Operation(summary = "구매예정 상품 수정", description = "구매예정 상품 수정 처리")
     @PutMapping
     public ResVo putProduct(@RequestBody ProductListUpdDto dto) {
         log.info("dto : {}", dto);
+        if(dto.getUserPk() != 1) {
+            throw new UserNotFoundException("잘못된 유저PK 입니다.");
+        }
+        ProductPkExceptionVo pkProduct = service.getPkProduct(dto.getProductPk());
+        if(pkProduct == null) {
+            throw new ProductPkNotFoundException("잘못된 상품PK 입니다.");
+        }
+        List<AdminCategorySelVo> category = adminService.getCategory();
+        if(dto.getCategoryPk() < 1 || dto.getCategoryPk() > category.size()) {
+            throw new CategoryPkNotFoundException("잘못된 상품 카테고리 입니다.");
+        }
+
         return service.putProduct(dto);
     }
 
@@ -49,6 +82,13 @@ public class ProductController {
     public ResVo patchProductCheck(@RequestBody ProductCompleteUpdDto dto) {
         log.info("dto : {}", dto);
 
+        if(dto.getUserPk() != 1) {
+            throw new UserNotFoundException("잘못된 유저PK 입니다.");
+        }
+        ProductPkExceptionVo pkProduct = service.getPkProduct(dto.getProductPk());
+        if(pkProduct == null) {
+            throw new ProductPkNotFoundException("잘못된 상품PK 입니다.");
+        }
         return service.patchProductCheck(dto);
     }
 
@@ -57,6 +97,14 @@ public class ProductController {
     @DeleteMapping
     public ResVo deleteProduct(@RequestBody ProductListDelDto dto) {
         log.info("dto : {}", dto);
+
+        if(dto.getUserPk() != 1) {
+            throw new UserNotFoundException("잘못된 유저PK 입니다.");
+        }
+        ProductPkExceptionVo pkProduct = service.getPkProduct(dto.getProductPk());
+        if(pkProduct == null) {
+            throw new ProductPkNotFoundException("잘못된 상품PK 입니다.");
+        }
         return service.deleteProduct(dto);
     }
 }
