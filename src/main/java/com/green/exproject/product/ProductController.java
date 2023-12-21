@@ -28,7 +28,6 @@ import java.util.List;
 public class ProductController {
     private final ProductService service;
     private final AdminService adminService;
-    private final UserService userService;
 
     @Operation(summary = "상품 입력", description = "장바구니 목록에 카드 추가 <br>categoryPk 값 아래 카테고리 리스트 참고")
     @PostMapping
