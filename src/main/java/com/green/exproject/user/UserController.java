@@ -2,6 +2,7 @@ package com.green.exproject.user;
 
 import com.green.exproject.category.CategoryService;
 import com.green.exproject.common.ResVo;
+import com.green.exproject.exception.ExceptionDuplicationUid;
 import com.green.exproject.exception.ExceptionVoidNm;
 import com.green.exproject.exception.ExceptionVoidUid;
 import com.green.exproject.exception.ExceptionVoidUpw;
@@ -29,12 +30,22 @@ public class UserController {
         if(dto.getUid() == "" || dto.getUid() == null) {
             throw new ExceptionVoidUid("아이디를 입력 해주세요.");
         }
+        UserSigninDto siDto = new UserSigninDto();
+        siDto.setUid(dto.getUid());
+        siDto.setUpw(dto.getUpw());
+        UserSigninVo siVo = service.getUserSignin(siDto);
+        if(!(siVo.equals(null))) {
+            throw new ExceptionDuplicationUid("중복된 아이디 입니다!");
+        }
+
         if(dto.getUpw() == "" || dto.getUpw() == null) {
             throw new ExceptionVoidUpw("비밀번호를 입력 해주세요.");
         }
+
         if(dto.getNm() == "" || dto.getNm() == null) {
             throw new ExceptionVoidNm("이름을 입력 해주세요.");
         }
+
         return service.postUser(dto);
     }
 
