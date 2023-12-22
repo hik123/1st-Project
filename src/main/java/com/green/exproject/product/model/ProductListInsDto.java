@@ -13,6 +13,7 @@ public class ProductListInsDto {
     @Schema(defaultValue = "1")
     private int userPk;
 
+    @Schema(defaultValue = "3")
     private int categoryPk;
     @Schema(defaultValue = "상품 이름")
     private String productNm;

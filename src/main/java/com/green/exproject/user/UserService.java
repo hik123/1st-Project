@@ -2,6 +2,8 @@ package com.green.exproject.user;
 
 import com.green.exproject.common.Const;
 import com.green.exproject.common.ResVo;
+import com.green.exproject.exception.ExceptionWrongUid;
+import com.green.exproject.exception.ExceptionWrongUpw;
 import com.green.exproject.user.model.UserSigninDto;
 import com.green.exproject.user.model.UserSigninProcVo;
 import com.green.exproject.user.model.UserSigninVo;
@@ -28,9 +30,9 @@ public class UserService {
         UserSigninProcVo pVo = mapper.selUserSignin(dto.getUid());
 
         if(pVo == null) {
-            return UserSigninVo.builder().result(Const.LOGIN_NO_UID).build(); // result:2 없는 아이디
+            throw new ExceptionWrongUid("아이디를 확인 해주세요");
         } else if(!(dto.getUpw().equals(pVo.getUpw()))) {
-            return UserSigninVo.builder().result(Const.LOGIN_DIFF_UPW).build(); // result:3 비밀번호 틀림
+            throw new ExceptionWrongUpw("비밀번호를 확인 해주세요");
         }
         return UserSigninVo.builder()
                 .result(Const.SUCCESS) // result:1 로그인 성공

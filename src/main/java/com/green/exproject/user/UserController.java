@@ -1,6 +1,10 @@
 package com.green.exproject.user;
 
+import com.green.exproject.category.CategoryService;
 import com.green.exproject.common.ResVo;
+import com.green.exproject.exception.ExceptionVoidNm;
+import com.green.exproject.exception.ExceptionVoidUid;
+import com.green.exproject.exception.ExceptionVoidUpw;
 import com.green.exproject.user.model.UserSigninDto;
 import com.green.exproject.user.model.UserSigninVo;
 import com.green.exproject.user.model.UserSignupDto;
@@ -17,10 +21,20 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "유저")
 public class UserController {
     private final UserService service;
+    private final CategoryService adminService;
 
     @Operation(summary = "회원가입")
     @PostMapping("/signup")
     public ResVo postUser(@RequestBody UserSignupDto dto) {
+        if(dto.getUid() == "" || dto.getUid() == null) {
+            throw new ExceptionVoidUid("아이디를 입력 해주세요.");
+        }
+        if(dto.getUpw() == "" || dto.getUpw() == null) {
+            throw new ExceptionVoidUpw("비밀번호를 입력 해주세요.");
+        }
+        if(dto.getNm() == "" || dto.getNm() == null) {
+            throw new ExceptionVoidNm("이름을 입력 해주세요.");
+        }
         return service.postUser(dto);
     }
 

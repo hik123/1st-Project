@@ -10,10 +10,8 @@ import lombok.Data;
 public class UserSignupDto {
     @JsonIgnore
     private int userPk;
-    @Schema(defaultValue = "아이디")
+
     private String uid;
-    @Schema(defaultValue = "비밀번호")
     private String upw;
-    @Schema(defaultValue = "이름")
     private String nm;
 }

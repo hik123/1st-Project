@@ -10,6 +10,7 @@ public class ProductListUpdDto {
     @Schema(defaultValue = "1")
     private int userPk;
     private int productPk;
+    @Schema(defaultValue = "3")
     private int categoryPk;
     @Schema(defaultValue = "상품 이름")
     private String productNm;
