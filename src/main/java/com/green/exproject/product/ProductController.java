@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -39,7 +40,7 @@ public class ProductController {
         }
         List<CategorySelVo> category = adminService.getCategory();
         if(dto.getCategoryPk() < 1 || dto.getCategoryPk() > category.size()) {
-            throw new ExceptionMessagePrint("잘못된 상품종류 입니다.");
+            throw new ExceptionMessagePrint("잘못된 상품 카테고리 입니다.");
         }
         return service.postProduct(dto);
     }
