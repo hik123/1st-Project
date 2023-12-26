@@ -99,7 +99,7 @@
     </delete>
 
     <!-- -->
-    <!-- 예외처리를 위한 상품productPk값의 정보-->
+    <!-- 예외처리를 위한 특정 상품Pk값의 정보-->
     <select id="selPkProduct">
         SELECT product_nm AS productNm
         FROM t_purchase_product

@@ -11,8 +11,15 @@
 
     <!-- 로그인 인증 -->
     <select id="selUserSignin">
-        SELECT user_pk AS userPk, uid, upw, nm, created_at AS createdAt
+        SELECT user_pk AS userPk, upw, nm, created_at AS createdAt
         FROM t_user
         WHERE uid = #{uid}
+    </select>
+
+    <!--  -->
+    <select id="selUserPkInfo">
+        SELECT user_pk AS userPk, upw, nm, created_at AS createdAt
+        FROM t_user
+        WHERE user_pk = #{userPk}
     </select>
 </mapper>

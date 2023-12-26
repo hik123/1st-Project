@@ -57,7 +57,9 @@ public class ProductService {
         }
         return new ResVo(result+result2);
     }
+
     // ---------------------------
+    // 잘못된 상품PK 입력 시 예외처리 하기 위함
     public ProductPkExceptionVo getPkProduct(int productPk) {
         return mapper.selPkProduct(productPk);
     }

@@ -2,8 +2,7 @@ package com.green.exproject.user;
 
 import com.green.exproject.common.Const;
 import com.green.exproject.common.ResVo;
-import com.green.exproject.exception.ExceptionWrongUid;
-import com.green.exproject.exception.ExceptionWrongUpw;
+import com.green.exproject.exception.ExceptionMessagePrint;
 import com.green.exproject.user.model.UserSigninDto;
 import com.green.exproject.user.model.UserSigninProcVo;
 import com.green.exproject.user.model.UserSigninVo;
@@ -30,14 +29,25 @@ public class UserService {
         UserSigninProcVo pVo = mapper.selUserSignin(dto.getUid());
 
         if(pVo == null) {
-            throw new ExceptionWrongUid("아이디를 확인 해주세요");
+            throw new ExceptionMessagePrint("아이디를 확인 해주세요");
         } else if(!(dto.getUpw().equals(pVo.getUpw()))) {
-            throw new ExceptionWrongUpw("비밀번호를 확인 해주세요");
+            throw new ExceptionMessagePrint("비밀번호를 확인 해주세요");
         }
         return UserSigninVo.builder()
                 .result(Const.SUCCESS) // result:1 로그인 성공
                 .userPk(pVo.getUserPk())
                 .nm(pVo.getNm())
                 .build();
+    }
+
+    // 예외처리를 위한 특정 userPk의 정보
+    public UserSigninProcVo getUserPkInfo(int userPk) {
+        UserSigninProcVo vo = mapper.selUserPkInfo(userPk);
+        return vo;
+    }
+
+    // 회원가입 시 중복된 아이디 입력 예외처리
+    public UserSigninProcVo getUserIdInfo(String uid) {
+        return mapper.selUserSignin(uid);
     }
 }
