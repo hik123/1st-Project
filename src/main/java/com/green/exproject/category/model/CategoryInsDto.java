@@ -5,7 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
-@Schema(name = "카테고리 추가 DTO")
+@Schema(name = "카테고리 추가 입력정보")
 public class CategoryInsDto {
     @JsonIgnore
     private int categoryPk;

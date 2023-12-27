@@ -17,20 +17,19 @@
 
     <!-- /////////////////////////////////////////// -->
 
-
     <!-- 카테고리 이름 수정 -->
-    <update id="updCategory">
+    <!-- update id="updCategory">
         UPDATE t_category
         SET category_nm = #{categoryNm}
         WHERE category_pk = #{categoryPk}
-    </update>
+    </update -->
 
     <!-- 상품의 카테고리PK 수정 -->
-    <update id="updProdtCategory">
+    <!-- update id="updProdtCategory">
         UPDATE t_category A
         LEFT JOIN t_purchase_product B
         ON A.category_pk = B.category_pk
         SET B.category_pk = #{categoryPk}
         WHERE B.product_pk = #{productPk}
-    </update>
+    </update -->
 </mapper>

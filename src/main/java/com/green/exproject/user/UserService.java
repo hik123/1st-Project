@@ -25,6 +25,7 @@ public class UserService {
     }
 
     // 로그인 인증
+    /*
     public UserSigninVo getUserSignin (UserSigninDto dto) {
         UserSigninProcVo pVo = mapper.selUserSignin(dto.getUid());
 
@@ -38,6 +39,13 @@ public class UserService {
                 .userPk(pVo.getUserPk())
                 .nm(pVo.getNm())
                 .build();
+    } */
+    public ResVo getUserSignin(UserSigninDto dto) {
+        UserSigninProcVo pVo = mapper.selUserSignin(dto.getUid());
+        if(pVo != null) {
+            return new ResVo(1);
+        }
+        return new ResVo(0);
     }
 
     // 예외처리를 위한 특정 userPk의 정보

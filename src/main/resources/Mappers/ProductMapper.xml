@@ -16,13 +16,15 @@
     <select id="selProduct">
         SELECT
               A.product_pk AS productPk
+            , A.user_pk AS userPk
+            , B.category_pk AS categoryPk
             , B.category_nm AS categoryNm
-            , A.product_nm AS purchaseNm
+            , A.product_nm AS productNm
             , A.memo
             , A.created_at AS createdAt
             , A.updated_at AS updatedAt
             , A.buying_check AS buyingCheck
-            , A.buying_date AS buyingDate
+            , DATE(A.buying_date) AS buyingDate
         FROM t_purchase_product A
         JOIN t_category B
         ON A.category_pk = B.category_pk
@@ -63,7 +65,7 @@
                 , memo = #{memo}
             </when>
             <otherwise>
-                , memo = null
+                , memo = null    <!-- 이전에 입력된 memo가 있을경우 null-->
             </otherwise>
         </choose>
         WHERE product_pk = #{productPk}
@@ -79,6 +81,16 @@
         WHERE product_pk = #{productPk}
         AND user_pk = #{userPk}
         AND buying_check = 0
+    </update>
+
+    <!-- 구매 확정 취소 -->
+    <update id="updProductCheckCancel">
+        UPDATE t_purchase_product
+        SET buying_check = 0
+        , buying_date = null
+        WHERE product_pk = #{productPk}
+        AND user_pk = #{userPk}
+        AND buying_check = 1
     </update>
 
     <!-- 구매 확정 처리 된 상품 숨김 -->
@@ -99,7 +111,7 @@
     </delete>
 
     <!-- -->
-    <!-- 예외처리를 위한 특정 상품Pk값의 정보-->
+    <!-- 상품 삭제 시 예외처리를 위한 특정 상품Pk 유무 확인-->
     <select id="selPkProduct">
         SELECT product_nm AS productNm
         FROM t_purchase_product

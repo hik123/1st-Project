@@ -5,11 +5,13 @@ import com.green.exproject.common.Const;
 import com.green.exproject.product.model.*;
 import com.green.exproject.common.ResVo;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class ProductService {
     private final ProductMapper mapper;
@@ -26,6 +28,7 @@ public class ProductService {
 
     // 장바구니 목록 보기
     public List<ProductListSelVo> getProduct(ProductListSelDto dto) {
+        log.info("dto: {}",dto);
         return mapper.selProduct(dto);
     }
 
@@ -39,13 +42,14 @@ public class ProductService {
         return new ResVo(Const.FAIL);
     }
 
-    // 구매확정 처리
+    // 구매 확정/취소 토글
     public ResVo patchProductCheck(ProductCompleteUpdDto dto) {
         int result = mapper.updProductCheck(dto);
         if(result == 1) {
             return new ResVo(Const.SUCCESS);
         }
-        return new ResVo(Const.FAIL);
+        int result2 = mapper.updProductCheckCancel(dto);
+        return new ResVo(2);
     }
 
     // 장바구니 물품 삭제 및 구매확정 물품 삭제(숨김) 처리
@@ -55,7 +59,7 @@ public class ProductService {
         if(result == 0 && result2 == 0) {
             return new ResVo(Const.FAIL);
         }
-        return new ResVo(result+result2);
+        return new ResVo(Const.SUCCESS);
     }
 
     // ---------------------------

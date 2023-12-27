@@ -16,6 +16,8 @@ public interface ProductMapper {
 
     int updProductCheck(ProductCompleteUpdDto dto);
 
+    int updProductCheckCancel(ProductCompleteUpdDto dto);
+
     int updProductCptHide(ProductListDelDto dto);
 
     int deleteProduct(ProductListDelDto dto);

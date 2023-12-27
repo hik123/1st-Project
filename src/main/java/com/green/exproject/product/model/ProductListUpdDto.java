@@ -5,7 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
-@Schema(name = "상품 수정 DTO")
+@Schema(name = "구매예정 상품 수정 입력정보")
 public class ProductListUpdDto {
     @Schema(defaultValue = "1")
     private int userPk;
